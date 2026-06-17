@@ -1,0 +1,33 @@
+{
+    "key": "group_fiaz_client",
+    "title": "Client Fields",
+    "fields": [
+        {
+            "key": "field_fiaz_client_industry",
+            "label": "Industry",
+            "name": "client_industry",
+            "type": "text"
+        },
+        {
+            "key": "field_fiaz_client_url",
+            "label": "Website URL",
+            "name": "client_url",
+            "type": "url"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "client"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+}

@@ -1,0 +1,27 @@
+// Design tokens
+$color-primary: #0d1117;
+$color-secondary: #ffffff;
+$color-accent: #0ea5e9;
+$color-accent-light: #38bdf8;
+$color-neutral: #6b7280;
+$color-border: rgba(255, 255, 255, 0.12);
+
+$font-heading: 'DM Sans', sans-serif;
+$font-body: 'Inter', sans-serif;
+
+$space-xs: 0.5rem;
+$space-sm: 1rem;
+$space-md: 2rem;
+$space-lg: 4rem;
+$space-xl: 6rem;
+$space-2xl: 8rem;
+
+$container: 1200px;
+$container-wide: 1400px;
+
+$transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+@import 'base';
+@import 'layout';
+@import 'components';
+@import 'sections';

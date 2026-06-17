@@ -1,0 +1,206 @@
+{
+    "key": "group_fiaz_homepage",
+    "title": "Homepage",
+    "fields": [
+        {
+            "key": "field_fiaz_hero_line_1",
+            "label": "Hero Line 1",
+            "name": "hero_line_1",
+            "type": "text",
+            "default_value": "ENGINEERING"
+        },
+        {
+            "key": "field_fiaz_hero_line_2",
+            "label": "Hero Line 2",
+            "name": "hero_line_2",
+            "type": "text",
+            "default_value": "BEYOND"
+        },
+        {
+            "key": "field_fiaz_hero_line_3",
+            "label": "Hero Line 3",
+            "name": "hero_line_3",
+            "type": "text",
+            "default_value": "CONSTRUCTION"
+        },
+        {
+            "key": "field_fiaz_hero_subtitle",
+            "label": "Hero Subtitle",
+            "name": "hero_subtitle",
+            "type": "textarea",
+            "rows": 3,
+            "default_value": "National-scale engineering, construction, HVAC, and industrial solutions for enterprise clients across Indonesia."
+        },
+        {
+            "key": "field_fiaz_hero_media_type",
+            "label": "Hero Media Type",
+            "name": "hero_media_type",
+            "type": "select",
+            "choices": {
+                "images": "Image Slider",
+                "video": "Background Video"
+            },
+            "default_value": "images"
+        },
+        {
+            "key": "field_fiaz_hero_slides",
+            "label": "Hero Slides",
+            "name": "hero_slides",
+            "type": "gallery",
+            "return_format": "array",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_fiaz_hero_media_type",
+                        "operator": "==",
+                        "value": "images"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_fiaz_hero_video_url",
+            "label": "Hero Video URL (MP4)",
+            "name": "hero_video_url",
+            "type": "url",
+            "instructions": "Direct URL to MP4 file for background video.",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_fiaz_hero_media_type",
+                        "operator": "==",
+                        "value": "video"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_fiaz_hero_video_poster",
+            "label": "Video Poster Image",
+            "name": "hero_video_poster",
+            "type": "image",
+            "return_format": "array",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_fiaz_hero_media_type",
+                        "operator": "==",
+                        "value": "video"
+                    }
+                ]
+            ]
+        },
+        {
+            "key": "field_fiaz_company_headline",
+            "label": "Company Headline",
+            "name": "company_headline",
+            "type": "text",
+            "default_value": "Engineering at National Scale"
+        },
+        {
+            "key": "field_fiaz_company_intro",
+            "label": "Company Intro",
+            "name": "company_intro",
+            "type": "wysiwyg"
+        },
+        {
+            "key": "field_fiaz_company_image",
+            "label": "Company Image",
+            "name": "company_image",
+            "type": "image",
+            "return_format": "array"
+        },
+        {
+            "key": "field_fiaz_company_highlights",
+            "label": "Company Highlights",
+            "name": "company_highlights",
+            "type": "repeater",
+            "layout": "table",
+            "button_label": "Add Highlight",
+            "sub_fields": [
+                {
+                    "key": "field_fiaz_highlight_label",
+                    "label": "Label",
+                    "name": "label",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "key": "field_fiaz_statistics",
+            "label": "Statistics",
+            "name": "statistics",
+            "type": "repeater",
+            "layout": "table",
+            "sub_fields": [
+                {
+                    "key": "field_fiaz_stat_number",
+                    "label": "Number",
+                    "name": "number",
+                    "type": "text"
+                },
+                {
+                    "key": "field_fiaz_stat_suffix",
+                    "label": "Suffix",
+                    "name": "suffix",
+                    "type": "text"
+                },
+                {
+                    "key": "field_fiaz_stat_label",
+                    "label": "Label",
+                    "name": "label",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "key": "field_fiaz_legality",
+            "label": "Legality Documents",
+            "name": "legality_documents",
+            "type": "repeater",
+            "sub_fields": [
+                {
+                    "key": "field_fiaz_legality_title",
+                    "label": "Title",
+                    "name": "title",
+                    "type": "text"
+                },
+                {
+                    "key": "field_fiaz_legality_number",
+                    "label": "Number",
+                    "name": "number",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "key": "field_fiaz_cta_title",
+            "label": "CTA Title",
+            "name": "cta_title",
+            "type": "text",
+            "default_value": "Ready to Build Beyond?"
+        },
+        {
+            "key": "field_fiaz_cta_text",
+            "label": "CTA Text",
+            "name": "cta_text",
+            "type": "textarea",
+            "default_value": "Partner with Indonesia's engineering specialists for construction, HVAC, and industrial solutions."
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "fiaz-homepage"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+}

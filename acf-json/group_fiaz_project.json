@@ -1,0 +1,74 @@
+{
+    "key": "group_fiaz_project",
+    "title": "Project Fields",
+    "fields": [
+        {
+            "key": "field_fiaz_project_year",
+            "label": "Year",
+            "name": "project_year",
+            "type": "select",
+            "choices": {
+                "2021": "2021",
+                "2022": "2022",
+                "2023": "2023",
+                "2024": "2024",
+                "2025": "2025",
+                "2026": "2026"
+            }
+        },
+        {
+            "key": "field_fiaz_project_category",
+            "label": "Category",
+            "name": "project_category",
+            "type": "select",
+            "choices": {
+                "hvac": "HVAC",
+                "construction": "Construction",
+                "maintenance": "Maintenance",
+                "mechanical": "Mechanical",
+                "electrical": "Electrical"
+            }
+        },
+        {
+            "key": "field_fiaz_project_location",
+            "label": "Location",
+            "name": "project_location",
+            "type": "text"
+        },
+        {
+            "key": "field_fiaz_project_client",
+            "label": "Client Name",
+            "name": "project_client",
+            "type": "text"
+        },
+        {
+            "key": "field_fiaz_project_featured",
+            "label": "Featured on Homepage",
+            "name": "project_featured",
+            "type": "true_false",
+            "ui": 1
+        },
+        {
+            "key": "field_fiaz_project_gallery",
+            "label": "Gallery",
+            "name": "project_gallery",
+            "type": "gallery",
+            "return_format": "array"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "project"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+}

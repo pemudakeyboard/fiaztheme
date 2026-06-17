@@ -1,0 +1,34 @@
+{
+    "key": "group_fiaz_director",
+    "title": "Director Fields",
+    "fields": [
+        {
+            "key": "field_fiaz_director_position",
+            "label": "Position",
+            "name": "director_position",
+            "type": "text"
+        },
+        {
+            "key": "field_fiaz_director_order",
+            "label": "Display Order",
+            "name": "director_order",
+            "type": "number",
+            "default_value": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "director"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+}

@@ -1,0 +1,8 @@
+{
+  "name": "fiaztheme",
+  "private": true,
+  "scripts": {
+    "build:css": "sass assets/scss/main.scss assets/css/main.css --no-source-map",
+    "watch:css": "sass --watch assets/scss/main.scss:assets/css/main.css --no-source-map"
+  }
+}

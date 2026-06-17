@@ -1,0 +1,83 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"color": {
+			"palette": [
+				{
+					"slug": "primary",
+					"color": "#0D1117",
+					"name": "Primary"
+				},
+				{
+					"slug": "secondary",
+					"color": "#FFFFFF",
+					"name": "Secondary"
+				},
+				{
+					"slug": "accent",
+					"color": "#0EA5E9",
+					"name": "Sky Blue"
+				},
+				{
+					"slug": "neutral",
+					"color": "#6B7280",
+					"name": "Neutral"
+				}
+			]
+		},
+		"typography": {
+			"fontFamilies": [
+				{
+					"fontFamily": "'DM Sans', sans-serif",
+					"slug": "dm-sans",
+					"name": "DM Sans"
+				},
+				{
+					"fontFamily": "'Inter', sans-serif",
+					"slug": "inter",
+					"name": "Inter"
+				}
+			],
+			"fontSizes": [
+				{
+					"slug": "body",
+					"size": "18px",
+					"name": "Body"
+				},
+				{
+					"slug": "section-title",
+					"size": "48px",
+					"name": "Section Title"
+				},
+				{
+					"slug": "hero",
+					"size": "72px",
+					"name": "Hero"
+				}
+			]
+		},
+		"layout": {
+			"contentSize": "1200px",
+			"wideSize": "1400px"
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "#0D1117",
+			"text": "#FFFFFF"
+		},
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--inter)",
+			"fontSize": "var(--wp--preset--font-size--body)",
+			"lineHeight": "1.6"
+		},
+		"elements": {
+			"heading": {
+				"typography": {
+					"fontFamily": "var(--wp--preset--font-family--dm-sans)"
+				}
+			}
+		}
+	}
+}

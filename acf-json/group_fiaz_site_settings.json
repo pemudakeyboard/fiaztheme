@@ -1,0 +1,48 @@
+{
+    "key": "group_fiaz_site_settings",
+    "title": "Site Settings",
+    "fields": [
+        {
+            "key": "field_fiaz_site_address",
+            "label": "Address",
+            "name": "site_address",
+            "type": "textarea",
+            "rows": 3
+        },
+        {
+            "key": "field_fiaz_site_phone",
+            "label": "Phone",
+            "name": "site_phone",
+            "type": "text"
+        },
+        {
+            "key": "field_fiaz_site_email",
+            "label": "Email",
+            "name": "site_email",
+            "type": "email"
+        },
+        {
+            "key": "field_fiaz_site_maps",
+            "label": "Google Maps",
+            "name": "site_maps_embed",
+            "type": "textarea",
+            "rows": 4,
+            "instructions": "Paste embed iframe HTML from Google Maps (Share → Embed a map), embed URL (google.com/maps/embed?pb=...), share link, or leave empty to use Address field."
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "fiaz-site-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true
+}
