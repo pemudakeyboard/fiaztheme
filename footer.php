@@ -8,6 +8,7 @@
 declare(strict_types=1);
 
 get_template_part( 'template-parts/footer/site-footer' );
+get_template_part( 'template-parts/footer/mobile-bottom-nav' );
 
 wp_footer();
 ?>

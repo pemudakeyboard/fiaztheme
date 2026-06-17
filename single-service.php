@@ -31,7 +31,7 @@ $category = Fiaztheme\get_field_safe( 'service_category' );
 			<?php while ( have_posts() ) : the_post(); the_content(); endwhile; ?>
 		</div>
 
-		<div class="fade-up" style="margin-top:3rem">
+		<div class="single-service__cta fade-up">
 			<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn btn--primary">
 				<?php esc_html_e( 'Discuss This Service', 'fiaztheme' ); ?>
 				<?php Fiaztheme\icon( 'arrow-right' ); ?>

@@ -7,13 +7,7 @@
 
 declare(strict_types=1);
 
-$nav_items = [
-	[ 'label' => __( 'About', 'fiaztheme' ), 'url' => home_url( '/about/' ) ],
-	[ 'label' => __( 'Services', 'fiaztheme' ), 'url' => get_post_type_archive_link( 'service' ) ?: home_url( '/services/' ) ],
-	[ 'label' => __( 'Projects', 'fiaztheme' ), 'url' => get_post_type_archive_link( 'project' ) ],
-	[ 'label' => __( 'Clients', 'fiaztheme' ), 'url' => home_url( '/clients/' ) ],
-	[ 'label' => __( 'Contact', 'fiaztheme' ), 'url' => home_url( '/contact/' ) ],
-];
+$nav_items = Fiaztheme\primary_nav_items();
 ?>
 <header class="site-header" role="banner">
 	<div class="container site-header__inner">
@@ -22,15 +16,18 @@ $nav_items = [
 		</a>
 
 		<nav class="site-nav" aria-label="<?php esc_attr_e( 'Primary', 'fiaztheme' ); ?>">
-			<button type="button" class="site-nav__toggle" aria-expanded="false" aria-controls="primary-menu">
-				<?php Fiaztheme\icon( 'menu' ); ?>
-				<span class="sr-only"><?php esc_html_e( 'Toggle menu', 'fiaztheme' ); ?></span>
-			</button>
-
 			<ul id="primary-menu" class="site-nav__list">
 				<?php foreach ( $nav_items as $item ) : ?>
+					<?php
+					$is_active = Fiaztheme\nav_item_is_active( $item['key'] );
+					$classes   = 'site-nav__link' . ( $is_active ? ' is-active' : '' );
+					?>
 					<li>
-						<a href="<?php echo esc_url( $item['url'] ); ?>" class="site-nav__link">
+						<a
+							href="<?php echo esc_url( $item['url'] ); ?>"
+							class="<?php echo esc_attr( $classes ); ?>"
+							<?php echo $is_active ? 'aria-current="page"' : ''; ?>
+						>
 							<?php echo esc_html( $item['label'] ); ?>
 						</a>
 					</li>

@@ -43,13 +43,85 @@ function field_has_content( string $key, $post_id = false ): bool {
 }
 
 /**
+ * Primary navigation items (header + mobile bottom bar).
+ *
+ * @return array<int, array{key: string, label: string, url: string, icon: string}>
+ */
+function primary_nav_items(): array {
+	return [
+		[
+			'key'   => 'about',
+			'label' => __( 'About', 'fiaztheme' ),
+			'url'   => home_url( '/about/' ),
+			'icon'  => 'nav-about',
+		],
+		[
+			'key'   => 'services',
+			'label' => __( 'Services', 'fiaztheme' ),
+			'url'   => get_post_type_archive_link( 'service' ) ?: home_url( '/services/' ),
+			'icon'  => 'nav-services',
+		],
+		[
+			'key'   => 'projects',
+			'label' => __( 'Projects', 'fiaztheme' ),
+			'url'   => get_post_type_archive_link( 'project' ) ?: home_url( '/projects/' ),
+			'icon'  => 'nav-projects',
+		],
+		[
+			'key'   => 'clients',
+			'label' => __( 'Clients', 'fiaztheme' ),
+			'url'   => home_url( '/clients/' ),
+			'icon'  => 'nav-clients',
+		],
+		[
+			'key'   => 'contact',
+			'label' => __( 'Contact', 'fiaztheme' ),
+			'url'   => home_url( '/contact/' ),
+			'icon'  => 'nav-contact',
+		],
+	];
+}
+
+/**
+ * Whether a primary nav item matches the current request.
+ */
+function nav_item_is_active( string $key ): bool {
+	switch ( $key ) {
+		case 'about':
+			return is_page( 'about' ) || is_page_template( 'page-about.php' );
+
+		case 'services':
+			return is_post_type_archive( 'service' )
+				|| is_singular( 'service' )
+				|| is_page( 'services' )
+				|| is_page_template( 'page-services.php' );
+
+		case 'projects':
+			return is_post_type_archive( 'project' ) || is_singular( 'project' );
+
+		case 'clients':
+			return is_page( 'clients' ) || is_page_template( 'page-clients.php' );
+
+		case 'contact':
+			return is_page( 'contact' ) || is_page_template( 'page-contact.php' );
+	}
+
+	return false;
+}
+
+/**
  * Output escaped SVG icon by name.
  */
 function icon( string $name, string $class = '' ): void {
 	$icons = [
-		'arrow-right' => '<svg class="' . esc_attr( $class ) . '" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-		'menu'        => '<svg class="' . esc_attr( $class ) . '" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
-		'close'       => '<svg class="' . esc_attr( $class ) . '" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+		'arrow-right'  => '<svg class="' . esc_attr( $class ) . '" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+		'menu'         => '<svg class="' . esc_attr( $class ) . '" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+		'close'        => '<svg class="' . esc_attr( $class ) . '" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+		'nav-about'    => '<svg class="' . esc_attr( $class ) . '" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.5"/><path d="M5 20c0-3.314 3.134-6 7-6s7 2.686 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+		'nav-services' => '<svg class="' . esc_attr( $class ) . '" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 9.5 12 4l9 5.5V19a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 20V12h6v8" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>',
+		'nav-projects' => '<svg class="' . esc_attr( $class ) . '" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="4" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="4" y="13" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="13" y="13" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>',
+		'nav-clients'  => '<svg class="' . esc_attr( $class ) . '" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20V6.5A1.5 1.5 0 0 1 5.5 5H18a1.5 1.5 0 0 1 1.5 1.5V20" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M4 20h16M9 20v-5h6v5M9 9h2M9 13h2M13 9h2M13 13h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>',
+		'nav-contact'  => '<svg class="' . esc_attr( $class ) . '" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6.5A1.5 1.5 0 0 1 5.5 5h13A1.5 1.5 0 0 1 20 6.5v11A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5v-11Z" stroke="currentColor" stroke-width="1.5"/><path d="m5 7 7 5 7-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
 	];
 
 	if ( isset( $icons[ $name ] ) ) {

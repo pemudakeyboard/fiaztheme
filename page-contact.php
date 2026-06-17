@@ -58,7 +58,7 @@ $maps_url  = \Fiaztheme\maps_embed_url( $maps_raw, $address );
 			</div>
 
 			<div class="fade-up">
-				<h2 class="section__title" style="font-size:2rem"><?php esc_html_e( 'Send a Message', 'fiaztheme' ); ?></h2>
+				<h2 class="section__title contact-form__title"><?php esc_html_e( 'Send a Message', 'fiaztheme' ); ?></h2>
 				<?php get_template_part( 'template-parts/content/contact-form' ); ?>
 			</div>
 		</div>

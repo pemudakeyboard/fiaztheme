@@ -14,11 +14,11 @@ get_header();
 		<?php \Fiaztheme\breadcrumb(); ?>
 		<h1 class="page-header__title"><?php the_title(); ?></h1>
 	</div>
-	<div class="container section">
+	<div class="container section section--page">
 		<?php while ( have_posts() ) : the_post(); ?>
-			<div class="fade-up intro__content">
+			<article class="page-content fade-up intro__content">
 				<?php the_content(); ?>
-			</div>
+			</article>
 		<?php endwhile; ?>
 	</div>
 </main>
