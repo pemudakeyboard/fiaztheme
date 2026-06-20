@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-$line1    = Fiaztheme\get_field_safe( 'hero_line_1', 'option', 'ENGINEERING' );
-$line2    = Fiaztheme\get_field_safe( 'hero_line_2', 'option', 'BEYOND' );
-$line3    = Fiaztheme\get_field_safe( 'hero_line_3', 'option', 'CONSTRUCTION' );
+$line1    = Fiaztheme\get_field_safe( 'hero_line_1', 'option', '' );
+$line2    = Fiaztheme\get_field_safe( 'hero_line_2', 'option', '' );
+$line3    = Fiaztheme\get_field_safe( 'hero_line_3', 'option', '' );
 $subtitle = Fiaztheme\get_field_safe(
 	'hero_subtitle',
 	'option',

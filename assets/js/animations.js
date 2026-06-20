@@ -61,7 +61,7 @@
       gsap.set(fadeEls, { y: 36, opacity: 0 });
 
       ScrollTrigger.batch(fadeEls, {
-        start: 'top 92%',
+        start: 'top 90%',
         once: true,
         onEnter: function (batch) {
           gsap.to(batch, {
