@@ -49,7 +49,7 @@ final class Contact_Form {
 			self::redirect_with_status( 'error', __( 'Invalid email address.', 'fiaztheme' ) );
 		}
 
-		$to      = get_option( 'admin_email' );
+		$to      = site_contact_email();
 		$subject = sprintf(
 			/* translators: %s: sender name */
 			__( 'New contact from %s — FIAZ Cakrawala', 'fiaztheme' ),

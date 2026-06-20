@@ -11,15 +11,17 @@
         },
         {
             "key": "field_fiaz_site_phone",
-            "label": "Phone",
+            "label": "Phone / WhatsApp",
             "name": "site_phone",
-            "type": "text"
+            "type": "text",
+            "instructions": "Customer service number for tel: links and the site-wide WhatsApp chat button. Use Indonesian format, e.g. 0812-3456-7890 or +62 812-3456-7890."
         },
         {
             "key": "field_fiaz_site_email",
-            "label": "Email",
+            "label": "Contact Form Email",
             "name": "site_email",
-            "type": "email"
+            "type": "email",
+            "instructions": "Inbox for contact form submissions via wp_mail(). Leave empty to use ptfiazcakrawala@gmail.com."
         },
         {
             "key": "field_fiaz_site_maps",

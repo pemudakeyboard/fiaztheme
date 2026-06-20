@@ -69,8 +69,8 @@ final class SEO {
 		];
 
 		$address = get_field_safe( 'site_address', 'option' );
-		$phone   = get_field_safe( 'site_phone', 'option' );
-		$email   = get_field_safe( 'site_email', 'option' );
+		$phone   = site_contact_phone();
+		$email   = site_contact_email();
 
 		if ( $address ) {
 			$schema['address'] = [
@@ -84,9 +84,7 @@ final class SEO {
 			$schema['telephone'] = $phone;
 		}
 
-		if ( $email ) {
-			$schema['email'] = $email;
-		}
+		$schema['email'] = $email;
 
 		self::output_json_ld( $schema );
 	}

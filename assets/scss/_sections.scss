@@ -508,6 +508,12 @@
   margin-bottom: $space-md;
 }
 
+.contact__whatsapp-link {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: $space-xs;
+}
+
 .about-block {
   margin-bottom: $space-xl;
 

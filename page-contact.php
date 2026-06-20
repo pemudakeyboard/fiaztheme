@@ -9,10 +9,11 @@ declare(strict_types=1);
 
 get_header();
 
-$address   = \Fiaztheme\get_field_safe( 'site_address', 'option' );
-$phone     = \Fiaztheme\get_field_safe( 'site_phone', 'option' );
-$email     = \Fiaztheme\get_field_safe( 'site_email', 'option' );
-$maps_raw  = \Fiaztheme\get_field_safe( 'site_maps_embed', 'option' );
+$address      = \Fiaztheme\get_field_safe( 'site_address', 'option' );
+$phone        = \Fiaztheme\site_contact_phone();
+$email        = \Fiaztheme\site_contact_email();
+$whatsapp_url = \Fiaztheme\whatsapp_chat_url( \Fiaztheme\whatsapp_default_message() );
+$maps_raw     = \Fiaztheme\get_field_safe( 'site_maps_embed', 'option' );
 $maps_url  = \Fiaztheme\maps_embed_url( $maps_raw, $address );
 ?>
 <main id="main" class="site-main section--contact-page">
@@ -36,12 +37,19 @@ $maps_url  = \Fiaztheme\maps_embed_url( $maps_raw, $address );
 						<a href="tel:<?php echo esc_attr( preg_replace( '/\s+/', '', $phone ) ); ?>"><?php echo esc_html( $phone ); ?></a>
 					</div>
 				<?php endif; ?>
-				<?php if ( $email ) : ?>
+				<?php if ( $whatsapp_url ) : ?>
 					<div class="contact__info-item">
-						<strong><?php esc_html_e( 'Email', 'fiaztheme' ); ?></strong>
-						<a href="mailto:<?php echo esc_attr( $email ); ?>"><?php echo esc_html( $email ); ?></a>
+						<strong><?php esc_html_e( 'WhatsApp', 'fiaztheme' ); ?></strong>
+						<a class="btn btn--whatsapp contact__whatsapp-link" href="<?php echo esc_url( $whatsapp_url ); ?>" target="_blank" rel="noopener noreferrer">
+							<?php Fiaztheme\icon( 'whatsapp' ); ?>
+							<?php esc_html_e( 'Chat with customer service', 'fiaztheme' ); ?>
+						</a>
 					</div>
 				<?php endif; ?>
+				<div class="contact__info-item">
+					<strong><?php esc_html_e( 'Email', 'fiaztheme' ); ?></strong>
+					<a href="mailto:<?php echo esc_attr( $email ); ?>"><?php echo esc_html( $email ); ?></a>
+				</div>
 
 				<?php if ( $maps_url ) : ?>
 					<?php

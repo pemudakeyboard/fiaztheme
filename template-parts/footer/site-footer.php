@@ -7,9 +7,10 @@
 
 declare(strict_types=1);
 
-$address = Fiaztheme\get_field_safe( 'site_address', 'option' );
-$phone   = Fiaztheme\get_field_safe( 'site_phone', 'option' );
-$email   = Fiaztheme\get_field_safe( 'site_email', 'option' );
+$address      = Fiaztheme\get_field_safe( 'site_address', 'option' );
+$phone        = Fiaztheme\site_contact_phone();
+$email        = Fiaztheme\site_contact_email();
+$whatsapp_url = Fiaztheme\whatsapp_chat_url( Fiaztheme\whatsapp_default_message() );
 ?>
 <footer class="site-footer" role="contentinfo">
 	<div class="container">
@@ -41,9 +42,10 @@ $email   = Fiaztheme\get_field_safe( 'site_email', 'option' );
 					<?php if ( $phone ) : ?>
 						<li><a href="tel:<?php echo esc_attr( preg_replace( '/\s+/', '', $phone ) ); ?>"><?php echo esc_html( $phone ); ?></a></li>
 					<?php endif; ?>
-					<?php if ( $email ) : ?>
-						<li><a href="mailto:<?php echo esc_attr( $email ); ?>"><?php echo esc_html( $email ); ?></a></li>
+					<?php if ( $whatsapp_url ) : ?>
+						<li><a href="<?php echo esc_url( $whatsapp_url ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'WhatsApp customer service', 'fiaztheme' ); ?></a></li>
 					<?php endif; ?>
+					<li><a href="mailto:<?php echo esc_attr( $email ); ?>"><?php echo esc_html( $email ); ?></a></li>
 				</ul>
 			</div>
 		</div>
