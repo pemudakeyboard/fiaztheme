@@ -74,19 +74,6 @@
           });
         },
       });
-
-      // Reveal elements already in viewport on load (common on mobile).
-      fadeEls.forEach(function (el) {
-        if (el.getBoundingClientRect().top < window.innerHeight * 0.92) {
-          gsap.to(el, {
-            y: 0,
-            opacity: 1,
-            duration: 0.9,
-            ease: 'power3.out',
-            overwrite: 'auto',
-          });
-        }
-      });
     }
 
     document.querySelectorAll('.reveal-text').forEach(function (el) {
