@@ -12,12 +12,13 @@ if ( ! $post ) {
 	return;
 }
 
-$year     = Fiaztheme\get_field_safe( 'project_year', $post->ID );
-$category = Fiaztheme\get_field_safe( 'project_category', $post->ID );
-$location = Fiaztheme\get_field_safe( 'project_location', $post->ID );
-$cat_label = Fiaztheme\project_categories()[ $category ] ?? $category;
+$year_key   = Fiaztheme\resolve_project_filter_year( (int) $post->ID );
+$year_label = $year_key === Fiaztheme\project_year_unassigned_key() ? '' : $year_key;
+$category   = Fiaztheme\get_field_safe( 'project_category', $post->ID, '' );
+$location   = Fiaztheme\get_field_safe( 'project_location', $post->ID );
+$cat_label  = Fiaztheme\project_categories()[ $category ] ?? $category;
 ?>
-<article class="card project-card fade-up" data-year="<?php echo esc_attr( $year ); ?>" data-category="<?php echo esc_attr( $category ); ?>">
+<article class="card project-card fade-up" data-year="<?php echo esc_attr( $year_key ); ?>" data-category="<?php echo esc_attr( $category ); ?>">
 	<a href="<?php echo esc_url( get_permalink( $post ) ); ?>" class="card__link">
 		<div class="card__image">
 			<?php if ( has_post_thumbnail( $post ) ) : ?>
@@ -28,7 +29,7 @@ $cat_label = Fiaztheme\project_categories()[ $category ] ?? $category;
 		</div>
 		<div class="card__body">
 			<div class="card__meta">
-				<?php echo esc_html( trim( $year . ' · ' . $cat_label, ' ·' ) ); ?>
+				<?php echo esc_html( trim( $year_label . ' · ' . $cat_label, ' ·' ) ); ?>
 				<?php if ( $location ) : ?>
 					· <?php echo esc_html( $location ); ?>
 				<?php endif; ?>

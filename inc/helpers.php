@@ -30,6 +30,119 @@ function get_field_safe( string $key, $post_id = false, $default = '' ): mixed {
 }
 
 /**
+ * Normalize project year for display and client-side filters.
+ */
+function normalize_project_year( mixed $year, string $default = '' ): string {
+	if ( ! is_scalar( $year ) || $year === '' ) {
+		return $default;
+	}
+
+	$digits = preg_replace( '/[^\d]/', '', (string) $year );
+
+	return $digits !== '' ? $digits : $default;
+}
+
+/**
+ * Filter key for projects missing a valid year.
+ */
+function project_year_unassigned_key(): string {
+	return 'unassigned';
+}
+
+/**
+ * Resolve the year filter key for a project.
+ */
+function resolve_project_filter_year( int $post_id ): string {
+	$year = normalize_project_year( get_field_safe( 'project_year', $post_id, '' ), '' );
+
+	return $year !== '' ? $year : project_year_unassigned_key();
+}
+
+/**
+ * Human-readable label for a year filter key.
+ *
+ * @param string|int $year
+ */
+function project_year_filter_label( $year ): string {
+	$year = (string) $year;
+
+	if ( $year === project_year_unassigned_key() ) {
+		return __( 'Year not set', 'fiaztheme' );
+	}
+
+	return $year;
+}
+
+/**
+ * Group projects by year filter key.
+ *
+ * @param array<int, \WP_Post> $projects
+ * @return array<string, array<int, \WP_Post>>
+ */
+function group_projects_by_year( array $projects ): array {
+	$by_year = [];
+
+	foreach ( $projects as $project ) {
+		$year = resolve_project_filter_year( (int) $project->ID );
+		if ( ! isset( $by_year[ $year ] ) ) {
+			$by_year[ $year ] = [];
+		}
+		$by_year[ $year ][] = $project;
+	}
+
+	return $by_year;
+}
+
+/**
+ * Ordered year filter keys for archive UI (newest first, unassigned last).
+ *
+ * @param array<string, array<int, \WP_Post>> $by_year
+ */
+function project_year_filter_keys( array $by_year ): array {
+	$years = array_map(
+		static fn( $year ): string => (string) $year,
+		array_keys( $by_year )
+	);
+	$unassigned = project_year_unassigned_key();
+	$years = array_values(
+		array_filter(
+			$years,
+			static fn( string $year ): bool => $year !== $unassigned
+		)
+	);
+	rsort( $years, SORT_NUMERIC );
+
+	if ( ! empty( $by_year[ $unassigned ] ) ) {
+		$years[] = $unassigned;
+	}
+
+	return $years;
+}
+
+/**
+ * Flatten grouped projects in filter-key order.
+ *
+ * @param array<string, array<int, \WP_Post>> $by_year
+ * @param array<int, string>                  $years
+ * @return array<int, \WP_Post>
+ */
+function flatten_projects_by_year( array $by_year, array $years ): array {
+	$ordered = [];
+
+	foreach ( $years as $year ) {
+		if ( empty( $by_year[ $year ] ) ) {
+			continue;
+		}
+
+		foreach ( $by_year[ $year ] as $project ) {
+			$ordered[] = $project;
+		}
+	}
+
+	return $ordered;
+}
+
+/**
  * Check if ACF text/HTML field has visible content.
  */
 function field_has_content( string $key, $post_id = false ): bool {
@@ -143,10 +256,12 @@ function project_categories(): array {
 }
 
 /**
- * Project years for filters.
+ * Distinct project years from published posts (newest first).
+ *
+ * @param array<int, \WP_Post> $projects
  */
-function project_years(): array {
-	return [ '2021', '2022', '2023', '2024', '2025', '2026' ];
+function project_years_from_posts( array $projects ): array {
+	return project_year_filter_keys( group_projects_by_year( $projects ) );
 }
 
 /**

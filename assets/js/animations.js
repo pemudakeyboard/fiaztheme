@@ -54,7 +54,7 @@
 
   function initScrollAnimations() {
     var fadeEls = gsap.utils.toArray('.fade-up').filter(function (el) {
-      return !el.closest('.section--hero');
+      return !el.closest('.section--hero') && !el.closest('[data-projects]');
     });
 
     if (fadeEls.length) {

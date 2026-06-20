@@ -19,17 +19,10 @@ $projects = get_posts(
 	]
 );
 
-$years       = Fiaztheme\project_years();
-$categories  = Fiaztheme\project_categories();
-$by_year     = [];
-
-foreach ( $projects as $project ) {
-	$year = Fiaztheme\get_field_safe( 'project_year', $project->ID, '2024' );
-	if ( ! isset( $by_year[ $year ] ) ) {
-		$by_year[ $year ] = [];
-	}
-	$by_year[ $year ][] = $project;
-}
+$categories = Fiaztheme\project_categories();
+$by_year    = Fiaztheme\group_projects_by_year( $projects );
+$years      = Fiaztheme\project_year_filter_keys( $by_year );
+$projects   = Fiaztheme\flatten_projects_by_year( $by_year, $years );
 ?>
 <main id="main" class="site-main">
 	<div class="container page-header">
@@ -48,7 +41,7 @@ foreach ( $projects as $project ) {
 		<div class="filter-bar fade-up">
 			<button type="button" class="filter-btn is-active" data-filter-year="all"><?php esc_html_e( 'All Years', 'fiaztheme' ); ?></button>
 			<?php foreach ( $years as $year ) : ?>
-				<button type="button" class="filter-btn" data-filter-year="<?php echo esc_attr( $year ); ?>"><?php echo esc_html( $year ); ?></button>
+				<button type="button" class="filter-btn" data-filter-year="<?php echo esc_attr( $year ); ?>"><?php echo esc_html( Fiaztheme\project_year_filter_label( $year ) ); ?></button>
 			<?php endforeach; ?>
 		</div>
 
@@ -72,7 +65,7 @@ foreach ( $projects as $project ) {
 			<?php foreach ( $years as $year ) : ?>
 				<?php if ( empty( $by_year[ $year ] ) ) continue; ?>
 				<div class="timeline__group" data-year-group="<?php echo esc_attr( $year ); ?>">
-					<div class="timeline__year"><?php echo esc_html( $year ); ?></div>
+					<div class="timeline__year"><?php echo esc_html( Fiaztheme\project_year_filter_label( $year ) ); ?></div>
 					<div class="grid-3">
 						<?php foreach ( $by_year[ $year ] as $project ) : ?>
 							<?php
